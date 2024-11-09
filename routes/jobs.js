@@ -15,12 +15,12 @@ router.get('/test', (req, res) => {
 // add job via post
 router.post('/add' , (req, res) => {
     
-    let {tittle, salary, company, description, email , new_job }= req.body;
+    let {title, salary, company, description, email , new_job }= req.body;
 
     // insert
     // o método create do sequelize insere dados no banco
     Job.create({
-        tittle,
+        title,
         salary,
         company,
         description,
