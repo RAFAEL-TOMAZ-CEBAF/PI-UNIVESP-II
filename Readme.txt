@@ -10,3 +10,11 @@ node app.js
 //Permite que o servidor atualize automaticamente apos modificações salvas.
 npm run dev
 
+
+HELP
+
+- title - continua - equipamento
+- email - solicitante
+- description - disciplina
+- company - local
+- salary - detalhes
