@@ -7,9 +7,13 @@ const router    = express.Router();
 const Job       = require('../models/Job');
 
 
-// Rota de teste
+// Rota de teste // verificação com POSTMAN
 router.get('/test', (req, res) => {
     res.send("Funcionando - PI UNIVESP 2024\n Time de desenvolvimento. ");       // via postman, usa-se um get nessa rota pra testar a conexão
+});
+
+router.get('add', (req, res) => {
+    res.render('add');       // Renderização do site
 });
 
 // add job via post
