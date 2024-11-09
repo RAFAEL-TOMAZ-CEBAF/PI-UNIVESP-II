@@ -12,8 +12,9 @@ router.get('/test', (req, res) => {
     res.send("Funcionando - PI UNIVESP 2024\n Time de desenvolvimento. ");       // via postman, usa-se um get nessa rota pra testar a conexão
 });
 
+
 router.get('/add', (req, res) => {
-    res.render('add.hbs');       // Renderização do site
+    res.render('add');       // Renderização do site
 });
 
 // add job via post

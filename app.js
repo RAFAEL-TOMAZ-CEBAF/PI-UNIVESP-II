@@ -5,8 +5,14 @@ const path          = require('path');
 const db            = require('./db/connection');
 const bodyParser    = require('body-parser');
 
+const Job        = require('./models/Job');         // necessário para tornar a view dinâmica
+const Sequelize  = require('sequelize');
+const Op         = Sequelize.Op;
+
+
 // inicia o servidor
 const PORT = 3000;     //porta de início
+
 app.listen(PORT , function() {
     console.log(`O Express está rodando na porta ${PORT}\n
         Digite no navegador:\n 
@@ -39,8 +45,21 @@ db
 
 // routes
 app.get('/' , (req,res) => {
-    res.render("index");
+    
+    // busca as jobs por ordem de criação (usando a aba createdAt, pelo sequelize)
+    Job.findAll({order: [
+        ['createdAt', 'DESC']
+      ]})
+    .then(jobs => {
+        res.render('index', {
+            jobs
+        });
+    
+      })
 });
+
+
+
 
 // jobs routes
 app.use('/jobs' , require('./routes/jobs'));
