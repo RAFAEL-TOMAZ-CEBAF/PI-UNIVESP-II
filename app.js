@@ -1,5 +1,7 @@
 const express       = require('express');
-const app           = express();  // cria o servidor para uso
+const exphbs        = require('express-handlebars');
+const app           = express();    // cria o servidor para uso
+const path          = require('path');
 const db            = require('./db/connection');
 const bodyParser    = require('body-parser');
 
@@ -14,6 +16,16 @@ app.listen(PORT , function() {
 // body parser
 app.use(bodyParser.urlencoded({extended: false}))
 
+// Handlebars
+app.set('views', path.join(__dirname, 'views'));        // onde estão os templates do projeto
+
+// Configuração da engine (render) do handlebars - ver https://stackoverflow.com/questions/43704187/cant-get-express-handlebars-render-an-html-page
+app.engine('.hbs', exphbs.engine({ extname: '.hbs', defaultLayout: "main"})); 
+app.set('view engine', 'hbs');
+
+// Pasta de arquivos estáticos
+app.use(express.static(path.join(__dirname, "public")));
+
 
 // db connection
 db
@@ -27,7 +39,7 @@ db
 
 // routes
 app.get('/' , (req,res) => {
-    res.send("Working in progress - ");
+    res.render("index");
 });
 
 // jobs routes
