@@ -6,8 +6,8 @@ const db            = require('./db/connection');
 const bodyParser    = require('body-parser');
 
 const Job        = require('./models/Job');         // necessário para tornar a view dinâmica
-const Sequelize  = require('sequelize');
-const Op         = Sequelize.Op;
+const Sequelize  = require('sequelize');            // necessário para o mecanismo de busca
+const Op         = Sequelize.Op;                    // busca - consultas mais complexas
 
 
 // inicia o servidor
@@ -44,19 +44,49 @@ db
     });
 
 // routes
-app.get('/' , (req,res) => {
-    
+
+app.get('/', (req, res) => {
+
+    // implementando o mecanismo de busca de equipamentos, em aberto...
+    let search = req.query.job;
+    let query  = '%'+search+'%'; // permite busca de termos que contenham parte da search
+
+
     // busca as jobs por ordem de criação (usando a aba createdAt, pelo sequelize)
-    Job.findAll({order: [
+    if(!search) {
+      Job.findAll({order: [
         ['createdAt', 'DESC']
       ]})
-    .then(jobs => {
+      .then(jobs => {
+    
         res.render('index', {
-            jobs
+          jobs
         });
     
       })
-});
+      .catch(err => console.log(err));      // DEBUG - permite rastrear erro, caso ele exista
+    } else {
+      Job.findAll({
+        where: {title: {[Op.like]: query}},
+        order: [
+          ['createdAt', 'DESC']
+      ]})
+      .then(jobs => {
+        console.log(search);
+        console.log(search);
+    
+        res.render('index', {
+          jobs, search
+        });
+    
+      })
+      .catch(err => console.log(err));      // DEBUG - permite rastrear erro, caso ele exista
+    }
+  
+    
+  });
+
+
 
 
 
