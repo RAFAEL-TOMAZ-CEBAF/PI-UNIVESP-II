@@ -6,16 +6,21 @@
     "sequelize": "^6.37.5",
     "sqlite3": "^5.1.7"
   },
-  "name": "pi_2_univesp",
+  "homepage": "https://RAFAEL-TOMAZ-CEBAF.github.io/PI-UNIVESP-II",
+  "name": "pi_2_univesp", 
   "version": "1.0.0",
   "description": "Atividade do projeto integrador 2 - grupo I da Univesp",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+
   },
   "author": "Grupo I",
   "license": "MIT",
   "devDependencies": {
+    "gh-pages": "^6.2.0",
     "nodemon": "^3.1.7"
   }
 }
