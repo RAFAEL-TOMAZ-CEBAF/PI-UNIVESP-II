@@ -6,16 +6,16 @@ const Job = db.define('job', {
     title:{
         type: Sequelize.STRING,
     },
-    description:{
+    solicitante:{
         type: Sequelize.STRING,
     },
-    salary:{
+    disciplina:{
         type: Sequelize.STRING,
     },
-    company:{
+    local:{
         type: Sequelize.STRING,
     },
-    email:{
+    detalhes:{
         type: Sequelize.STRING,
     },
     new_job:{
