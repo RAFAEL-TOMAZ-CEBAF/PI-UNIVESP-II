@@ -11,10 +11,3 @@ node app.js
 npm run dev
 
 
-HELP
-
-- title - continua - equipamento
-- email - solicitante
-- description - disciplina
-- company - local
-- salary - detalhes
