@@ -49,8 +49,8 @@
               <p>Local / Sala: {{dataValues.local}}</p>
               <p><h2>{{dataValues.title}}</h2></p> 
               <p>Solicitante: {{dataValues.solicitante}} </p>
-              <span class="new-job-label">Nova</span>
-              <a class="btn btn-primary">Ver requisição</a>
+              <span class="new-job-label">Em Uso</span>
+              <a class="btn btn-primary" href = "/jobs/view/{{dataValues.id}}">Ver requisição</a>
             </li>
 
             {{/each}}
